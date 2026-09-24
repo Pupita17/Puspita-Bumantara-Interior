@@ -151,5 +151,15 @@ elif page == "📞 Konsultasi & Survei":
         
         tombol_kirim = st.form_submit_button("Generate Formulir WhatsApp 💬")
         
-       0882019577155
+     if tombol_kirim:
+            if nama and no_hp:
+                pesan_wa = f"Halo Puspita Bumantara Interior, saya *{nama}* ingin berkonsultasi mengenai proyek interior.\n\n📍 *Lokasi:* {alamat}\n🛠️ *Kebutuhan:* {kebutuhan}\n📝 *Catatan:* {catatan}"
+                pesan_encoded = urllib.parse.quote(pesan_wa)
+                link_whatsapp = f"https://whatsapp.com{WA_NUMBER}&text={pesan_encoded}"
+                
+                st.success("✅ Data formulir berhasil dibuat! Klik tombol di bawah ini untuk langsung terhubung.")
+                
+                # PERBAIKAN TOTAL: Menggunakan tombol resmi Streamlit agar TIDAK DIBLOKIR browser
+                st.link_button("Hubungkan ke WhatsApp Resmi Puspita Bumantara 💬", link_whatsapp, type="primary", use_container_width=True)
+            else:
                 st.error("⚠️ Nama Lengkap dan Nomor WhatsApp wajib diisi agar tim kami dapat merespons Anda.")
