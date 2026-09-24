@@ -40,10 +40,11 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
 # --- NAVIGASI SIDEBAR ---
-# MENAMPILKAN LOGO USAHA DARI FOLDER ASSETS
-st.sidebar.image("assets/logo.png", width=260)  # Angka 150 adalah ukuran lebar logo (bisa Anda sesuaikan)
+st.sidebar.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+st.sidebar.image("assets/logo.png", width=260)
+st.sidebar.markdown("</div>", unsafe_allow_html=True)
+
 st.sidebar.markdown("<h2 style='text-align: center; color: #d4af37; margin-top: 10px;'>PUSPITA BUMANTARA</h2>", unsafe_allow_html=True)
 st.sidebar.markdown("<p style='text-align: center; font-size: 13px; margin-top:-15px;'>Interior & Furniture Custom</p>", unsafe_allow_html=True)
 st.sidebar.write("---")
@@ -57,10 +58,6 @@ if page == "✨ Beranda Utama":
     st.markdown("<p style='text-align: center; font-size: 18px; color: #a0aab2; margin-top:-15px;'>Jasa Desain Interior & Pembuatan Furnitur Kustom Premium</p>", unsafe_allow_html=True)
     st.write("")
     
-    # KODE GAMBAR BANNER INTERNET YANG RUSAK SUDAH DIHAPUS DARI SINI AGAR RAPI
-    st.write("")
-    
-    # KODE PERBAIKAN: Menambahkan warna teks gelap (#2c3e50) agar terbaca di kotak putih
     st.markdown("""
     <div style='background-color: #ffffff; color: #2c3e50; padding: 25px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); line-height: 1.8;'>
     Selamat datang di <b>Puspita Bumantara Interior</b>. Kami hadir sebagai solusi terbaik untuk mewujudkan interior hunian impian Anda di 
@@ -71,7 +68,7 @@ if page == "✨ Beranda Utama":
     """, unsafe_allow_html=True)
     st.write("")
 
-    # Nilai Jual (Keunggulan) dengan teks gelap di dalam card
+    # Nilai Jual (Keunggulan) dengan tampilan Kotak Mewah
     st.markdown("### 🛠️ Standar Layanan Unggulan Kami")
     col_a, col_b, col_c = st.columns(3)
     
@@ -79,7 +76,7 @@ if page == "✨ Beranda Utama":
         st.markdown("""
         <div class="feature-card">
             <h4 style="color: #2c3e50;">📐 Gratis Survei & Ukur</h4>
-            <p style='font-size: 14px; color: #4a5568;'>Tim kami siap datang langsung ke lokasi Anda di wilayah Sengayam dan sekitarnya untuk melakukan pengukuran akurat tanpa dipungut biaya.</p>
+            <p style='font-size: 14px; color: #4a5568;'>Tim kami siap datang langsung to lokasi Anda di wilayah Sengayam dan sekitarnya untuk melakukan pengukuran akurat tanpa dipungut biaya.</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -107,13 +104,11 @@ elif page == "📂 Galeri Portofolio":
     
     col1, col2 = st.columns(2)
     with col1:
-        # Menggunakan foto lokal Anda
         st.image("assets/kitchen.jpg", width="stretch") 
         st.markdown("<h4 style='margin-top:10px;'>1. Premium Kitchen Set Minimalis</h4>", unsafe_allow_html=True)
         st.caption("Konsep dapur bersih, fungsional, memaksimalkan ruang penyimpanan dengan kompartemen kustom.")
         
     with col2:
-        # Menggunakan foto lokal Anda
         st.image("assets/kamar.jpg", width="stretch") 
         st.markdown("<h4 style='margin-top:10px;'>2. Kamar Tidur Utama Kontemporer</h4>", unsafe_allow_html=True)
         st.caption("Pencahayaan warm light tersembunyi dikombinasikan dengan backdrop dipan minimalis untuk kenyamanan penuh.")
@@ -124,7 +119,6 @@ elif page == "🧮 Simulasi Anggaran":
     st.write("Simulasikan rencana biaya pembuatan furnitur Anda dengan standar harga Rp 2.000.000 / meter lari.")
     st.write("")
     
-    # Memasukkan input ke dalam kotak form agar rapi
     with st.container(border=True):
         jenis_layanan = st.selectbox("Pilih Jenis Furnitur Kustom:", ["Kitchen Set (Atas/Bawah)", "Lemari Pakaian / Wardrobe", "Backdrop TV Modern", "Partisi Ruangan Dua Muka"])
         panjang = st.number_input("Perkiraan panjang furnitur yang Anda inginkan (dalam satuan meter):", min_value=1.0, value=2.0, step=0.5)
@@ -157,11 +151,13 @@ elif page == "📞 Konsultasi & Survei":
         
         tombol_kirim = st.form_submit_button("Generate Formulir WhatsApp 💬")
         
-       # Mengubah teks ke format URL link
+        if tombol_kirim:
+            if nama and no_hp:
+                pesan_wa = f"Halo Puspita Bumantara Interior, saya *{nama}* ingin berkonsultasi mengenai proyek interior.\n\n📍 *Lokasi:* {alamat}\n🛠️ *Kebutuhan:* {kebutuhan}\n📝 *Catatan:* {catatan}"
                 pesan_encoded = urllib.parse.quote(pesan_wa)
-                
-                # PERBAIKAN: Menggunakan domain ://whatsapp.com yang lebih stabil
-                link_whatsapp = f"https://://whatsapp.com/send?phone={WA_NUMBER}&text={pesan_encoded}"
+                link_whatsapp = f"https://whatsapp.com{WA_NUMBER}&text={pesan_encoded}"
                 
                 st.success("✅ Data formulir berhasil dibuat! Silakan klik tombol hijau di bawah ini untuk langsung terhubung ke WhatsApp kami.")
                 st.markdown(f'<a href="{link_whatsapp}" target="_blank" style="display: block; padding: 12px; background-color: #25D366; color: white; text-align: center; text-decoration: none; font-size: 16px; border-radius: 6px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-shadow: none;">Hubungkan ke WhatsApp Resmi Puspita Bumantara</a>', unsafe_allow_html=True)
+            else:
+                st.error("⚠️ Nama Lengkap dan Nomor WhatsApp wajib diisi agar tim kami dapat merespons Anda.")
