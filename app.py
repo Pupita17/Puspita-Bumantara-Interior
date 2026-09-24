@@ -76,7 +76,7 @@ if page == "✨ Beranda Utama":
         st.markdown("""
         <div class="feature-card">
             <h4 style="color: #2c3e50;">📐 Gratis Survei & Ukur</h4>
-            <p style='font-size: 14px; color: #4a5568;'>Tim kami siap datang langsung to lokasi Anda di wilayah Sengayam dan sekitarnya untuk melakukan pengukuran akurat tanpa dipungut biaya.</p>
+            <p style='font-size: 14px; color: #4a5568;'>Tim kami siap datang langsung ke lokasi Anda di wilayah Sengayam dan sekitarnya untuk melakukan pengukuran akurat tanpa dipungut biaya.</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -134,7 +134,7 @@ elif page == "🧮 Simulasi Anggaran":
 # --- HALAMAN 4: HUBUNGI KAMI ---
 elif page == "📞 Konsultasi & Survei":
     st.title("📞 Jadwalkan Konsultasi & Survei Lokasi")
-    st.write("Silakan isi data di bawah ini untuk mengirimkan detail proyek langsung ke sistem obrolan WhatsApp kami.")
+    st.write("Silakan isi data di bawah ini untuk mengirimkan detail proyek langsung ke WhatsApp kami.")
     st.write("")
     
     with st.form("form_premium_puspita"):
@@ -151,15 +151,13 @@ elif page == "📞 Konsultasi & Survei":
         
         tombol_kirim = st.form_submit_button("Generate Formulir WhatsApp 💬")
         
-     if tombol_kirim:
+        if tombol_kirim:
             if nama and no_hp:
                 pesan_wa = f"Halo Puspita Bumantara Interior, saya *{nama}* ingin berkonsultasi mengenai proyek interior.\n\n📍 *Lokasi:* {alamat}\n🛠️ *Kebutuhan:* {kebutuhan}\n📝 *Catatan:* {catatan}"
                 pesan_encoded = urllib.parse.quote(pesan_wa)
                 link_whatsapp = f"https://whatsapp.com{WA_NUMBER}&text={pesan_encoded}"
                 
-                st.success("✅ Data formulir berhasil dibuat! Klik tombol di bawah ini untuk langsung terhubung.")
-                
-                # PERBAIKAN TOTAL: Menggunakan tombol resmi Streamlit agar TIDAK DIBLOKIR browser
-                st.link_button("Hubungkan ke WhatsApp Resmi Puspita Bumantara 💬", link_whatsapp, type="primary", use_container_width=True)
+                st.success("✅ Data formulir berhasil dibuat! Silakan klik tombol di bawah ini untuk terhubung ke WhatsApp.")
+                st.link_button("Buka Obrolan WhatsApp Resmi Puspita Bumantara 💬", link_whatsapp, type="primary", use_container_width=True)
             else:
                 st.error("⚠️ Nama Lengkap dan Nomor WhatsApp wajib diisi agar tim kami dapat merespons Anda.")
