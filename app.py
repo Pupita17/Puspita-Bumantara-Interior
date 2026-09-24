@@ -151,13 +151,5 @@ elif page == "📞 Konsultasi & Survei":
         
         tombol_kirim = st.form_submit_button("Generate Formulir WhatsApp 💬")
         
-        if tombol_kirim:
-            if nama and no_hp:
-                pesan_wa = f"Halo Puspita Bumantara Interior, saya *{nama}* ingin berkonsultasi mengenai proyek interior.\n\n📍 *Lokasi:* {alamat}\n🛠️ *Kebutuhan:* {kebutuhan}\n📝 *Catatan:* {catatan}"
-                pesan_encoded = urllib.parse.quote(pesan_wa)
-                link_whatsapp = f"https://whatsapp.com{WA_NUMBER}&text={pesan_encoded}"
-                
-                st.success("✅ Data formulir berhasil dibuat! Silakan klik tombol hijau di bawah ini untuk langsung terhubung ke WhatsApp kami.")
-                st.markdown(f'<a href="{link_whatsapp}" target="_blank" style="display: block; padding: 12px; background-color: #25D366; color: white; text-align: center; text-decoration: none; font-size: 16px; border-radius: 6px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-shadow: none;">Hubungkan ke WhatsApp Resmi Puspita Bumantara</a>', unsafe_allow_html=True)
-            else:
+       0882019577155
                 st.error("⚠️ Nama Lengkap dan Nomor WhatsApp wajib diisi agar tim kami dapat merespons Anda.")
