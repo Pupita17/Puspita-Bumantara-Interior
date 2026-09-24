@@ -157,7 +157,25 @@ elif page == "📞 Konsultasi & Survei":
                 pesan_encoded = urllib.parse.quote(pesan_wa)
                 link_whatsapp = f"https://whatsapp.com{WA_NUMBER}&text={pesan_encoded}"
                 
-                st.success("✅ Data formulir berhasil dibuat! Silakan klik tombol di bawah ini untuk terhubung ke WhatsApp.")
-                st.link_button("Buka Obrolan WhatsApp Resmi Puspita Bumantara 💬", link_whatsapp, type="primary", use_container_width=True)
+                st.success("✅ Data formulir berhasil dibuat! Silakan klik tombol di bawah ini.")
+                
+                # METODE ANTI-BLOKIR MUTLAK: Menggunakan target='_self' agar langsung redirect di tab yang sama tanpa memicu pop-up blocker browser
+                tombol_html = f"""
+                <a href="{link_whatsapp}" target="_self" style="
+                    display: block; 
+                    width: 100%; 
+                    padding: 14px; 
+                    background-color: #25D366; 
+                    color: white; 
+                    text-align: center; 
+                    text-decoration: none; 
+                    font-size: 16px; 
+                    border-radius: 6px; 
+                    font-weight: bold; 
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                    margin-top: 10px;
+                ">Buka Obrolan WhatsApp Resmi Puspita Bumantara 💬</a>
+                """
+                st.markdown(tombol_html, unsafe_allow_html=True)
             else:
                 st.error("⚠️ Nama Lengkap dan Nomor WhatsApp wajib diisi agar tim kami dapat merespons Anda.")
